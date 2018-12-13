@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- supplier_options -->
+    <string-array name="array_supplier_options">
+        <item>@string/supplier_unknown</item>
+        <item>@string/supplier_sony</item>
+        <item>@string/supplier_gamers</item>
+        <item>@string/supplier_players</item>
+    </string-array>
+</resources>

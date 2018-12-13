@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityEditor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Product Label-->
+            <TextView
+                android:id="@+id/product_overview"
+                style="@style/GameEditorLabel"
+                android:textSize="@dimen/text_size_overview"
+                android:text="@string/label_product_overview" />
+
+        </LinearLayout>
+
+        <!--Product Overview-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Inout Fields-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Product Name Field-->
+                <EditText
+                    android:id="@+id/product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_product_name"
+                    android:textAppearance="?android:textAppearanceMedium" />
+
+                <!--Price Field-->
+                <EditText
+                    android:id="@+id/poduct_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_price"
+                    android:inputType="numberSigned" />
+
+                <!--Quantity Field-->
+                <EditText
+                    android:id="@+id/product_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_quantity"
+                    android:inputType="numberSigned" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ActivityViewLinearLayoutsection1">
+
+            <LinearLayout
+                style="@style/ListItemLinearLayoutsection2">
+
+                <TextView
+                    style="@style/ProductViewTitleTextStyle"
+                    android:text="@string/product_quantity" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ListItemLinearLayoutsection2">
+
+                <TextView
+                    android:id="@+id/product_quantity_view_text"
+                    style="@style/ProductViewdetailStyle" />
+
+                <LinearLayout
+                    style="@style/ListItemLinearLayoutsection2"
+                    android:paddingLeft="16dp">
+
+                    <LinearLayout style="@style/ListItemLinearLayoutsection2">
+
+                        <Button
+                            android:id="@+id/increase_button"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/colorAccent"
+                            android:text="+"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ListItemLinearLayoutsection2">
+
+                        <Button
+                            android:id="@+id/decrease_button"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@color/colorAccent"
+                            android:text="-"
+                            android:textColor="#fff" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Supplier Label-->
+            <TextView
+                android:id="@+id/supplier_overview"
+                android:textSize="@dimen/text_size_overview"
+                style="@style/GameEditorLabel"
+                android:text="@string/label_supplier_overview" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ProductAddTextStyle"
+                android:text="@string/product_supplier_name" />
+
+            <Spinner
+                android:id="@+id/product_supplier_name_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <!--Supplier Overview-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/overivew_margin_top"
+            android:orientation="vertical">
+
+            <!--Input Fields-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--Supplier Contact Field-->
+                <EditText
+                    android:id="@+id/supplier_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_supplier_contact"
+                    android:inputType="phone" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                style="@style/ListItemLinearLayoutsection2">
+
+                <Button
+                    android:id="@+id/phone_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black_background"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/call"
+                    android:focusable="false" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ActivityViewLinearLayoutsection1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/delete_button"
+                style="@style/ActivityViewButtonStyle"
+                android:drawableLeft="@drawable/delete"
+                android:text="Delete" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
