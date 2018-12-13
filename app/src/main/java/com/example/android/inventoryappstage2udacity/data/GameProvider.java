@@ -112,34 +112,6 @@ public class GameProvider extends ContentProvider {
     }
 
     /**
-     * Insert new data into the provider with the given ContentValues.
-     * @return Uri appended with the id of row.
-     */
-    @Nullable
-    @Override
-    public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
-
-        int match = sUriMatcher.match(uri);
-        switch(match){
-            case GAME:
-                return insertGame(uri, contentValues);
-            default:
-                throw new IllegalArgumentException("Insertion is not supported for " + uri);
-        }
-    }
-
-    private Uri insertGame(Uri uri, ContentValues contentValues){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long id = db.insert(GameInventoryContract.GameInventoryEntry.TABLE_NAME, null, contentValues);
-        if (id == -1) {
-            Log.e(LOG_TAG, "Failed to insert row for " + uri);
-            return null;
-        }
-        getContext().getContentResolver().notifyChange(uri, null);
-        return ContentUris.withAppendedId(uri, id);
-    }
-
-    /**
      * Perform the delete operation for the given URI. Use the given projection, selection, selection arguments.
      * @return rowsDeleted - number of rows deleted.
      */
@@ -172,6 +144,34 @@ public class GameProvider extends ContentProvider {
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
 
         }
+    }
+
+    /**
+     * Insert new data into the provider with the given ContentValues.
+     * @return Uri appended with the id of row.
+     */
+    @Nullable
+    @Override
+    public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
+
+        int match = sUriMatcher.match(uri);
+        switch(match){
+            case GAME:
+                return insertGame(uri, contentValues);
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for " + uri);
+        }
+    }
+
+    private Uri insertGame(Uri uri, ContentValues contentValues){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long id = db.insert(GameInventoryContract.GameInventoryEntry.TABLE_NAME, null, contentValues);
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+        getContext().getContentResolver().notifyChange(uri, null);
+        return ContentUris.withAppendedId(uri, id);
     }
 
     /**

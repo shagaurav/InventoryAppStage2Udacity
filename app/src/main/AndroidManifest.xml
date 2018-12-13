@@ -17,17 +17,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".CatalogActivity" />
-        <activity android:name=".ActivityEditor"
+        <activity
+            android:name=".ActivityEditor"
             android:label="@string/edit_games"
             android:parentActivityName=".CatalogActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CatalogActivity" />
         </activity>
+
         <provider
             android:name=".data.GameProvider"
             android:authorities="com.example.android.inventoryappstage2udacity"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <activity android:name=".ActivityInfo"></activity>
     </application>
 
 </manifest>

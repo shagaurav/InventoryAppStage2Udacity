@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,15 +12,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@color/blue_background"
-        tools:text="C - Balagurusamy" />
-
+        tools:text="@string/games_inventory" />
 
     <TextView
         android:id="@+id/label_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_below="@id/display_name"
+        android:layout_marginTop="@dimen/layout_margins"
         android:text="@string/label_price"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/red_background" />
@@ -30,13 +28,13 @@
         android:id="@+id/display_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/label_price"
         android:layout_below="@id/display_name"
+        android:layout_alignBaseline="@id/label_price"
         android:layout_marginStart="@dimen/list_item_price_left_margin"
         android:layout_toEndOf="@id/label_price"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/white_background"
-        tools:text="273" />
+        tools:text="@string/number" />
 
     <TextView
         android:id="@+id/for_single_item"
@@ -51,13 +49,13 @@
         android:id="@+id/display_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/display_name"
         android:layout_alignBaseline="@id/label_quantity"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/display_name"
         android:layout_marginStart="@dimen/list_item_quantity_left_margin"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/black_background"
-        tools:text="120" />
+        tools:text="@string/quantity_number" />
 
     <TextView
         android:id="@+id/label_quantity"
@@ -77,19 +75,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/sale_button_margin_top"
         android:background="@drawable/sale_button_background"
-        android:focusable="false"
-        android:gravity="center"
-        android:text="@string/button_sale"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="@color/black_background" />
-
-    <Button
-        android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_height="@dimen/sale_button_height"
-        android:layout_below="@id/sale_button"
-        android:layout_marginTop="5dp"
         android:focusable="false"
         android:gravity="center"
         android:text="@string/button_sale"

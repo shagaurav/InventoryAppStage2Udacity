@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/game_details_name_text_view"
+            style="@style/game_title_text_view"
+            android:layout_marginLeft="@dimen/android_layout_margin"
+            android:layout_marginRight="@dimen/list_item_padding"
+            tools:text="@string/supplier_sony" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/android_view"
+            android:layout_marginStart="@dimen/list_item_padding"
+            android:layout_marginTop="@dimen/sale_button_margin_top"
+            android:layout_marginEnd="@dimen/list_item_padding"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/black_background" />
+
+        <ImageView
+            android:id="@+id/game_details_price_icon_image_view"
+            style="@style/Image_details_style"
+            android:contentDescription="@string/game_price_icon"
+            app:srcCompat="@drawable/price" />
+
+        <TextView
+            android:id="@+id/game_details_price_text_view"
+            style="@style/game_details__text_view_style"
+            tools:text="@string/price_cannot_be_negative" />
+
+        <ImageView
+            android:id="@+id/game_details_quantity_icon_image_view"
+            style="@style/Image_details_style"
+            android:contentDescription="@string/game_quantity_icon"
+            app:srcCompat="@drawable/game_icon" />
+
+        <TextView
+            android:id="@+id/game_details_quantity_textView"
+            style="@style/game_details__text_view_style"
+            tools:text="@string/edit_games" />
+
+        <ImageView
+            android:id="@+id/game_details_supplier_icon_image_view"
+            style="@style/Image_details_style"
+            android:contentDescription="@string/game_supplier_icon"
+            app:srcCompat="@drawable/user" />
+
+        <TextView
+            android:id="@+id/game_details_supplier_name_textView"
+            style="@style/game_details__text_view_style"
+            tools:text="@string/edit_supplier_name" />
+
+        <ImageView
+            android:id="@+id/game_details_supplier_contact_icon_image_view"
+            style="@style/Image_details_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/game_supplier_contact_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/black_call"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/game_details_supplier_contact_text_view"
+            style="@style/game_details__text_view_style"
+            tools:text="@string/no_contact_to_show" />
+
+        <Button
+            android:id="@+id/delete_game_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/android_button_list_margin"
+            android:text="@string/delete" />
+    </LinearLayout>
+</RelativeLayout>

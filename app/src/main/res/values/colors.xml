@@ -4,20 +4,19 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <!-- Background color for app -->
+    <!-- Background color used in activity main and activity catalog -->
     <color name="white_background">#ffffff</color>
-
-    <!-- Background color for text NA! for the splash screen -->
     <color name="black_background">#060606</color>
-
-    <!-- Background color for text NA! for the splash screen -->
     <color name="red_background">#f10000</color>
 
-    <!-- Background color for text NA! for the splash screen -->
+
     <color name="blue_background">#3b93ff</color>
 
     <!--drawable => list_item_background.xml colors-->
     <color name="gradientStartColor">#000000</color>
     <color name="gradientCenterColor">#999498</color>
     <color name="gradientEndColor">#dadada</color>
+
+    <!-- Background color used in activity editor -->
+    <color name="plus_minus">#fff</color>
 </resources>

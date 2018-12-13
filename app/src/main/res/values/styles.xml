@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -8,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Style used in activity editor-->
     <style name="ProductAddTextStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -31,24 +31,6 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="GameEditorTextStyle">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <!-- activity_view style-->
-    <style name="ProductViewTitleTextStyle">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">13sp</item>
-    </style>
-
     <style name="ProductViewdetailStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -62,14 +44,21 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="quantity_view_title_text_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
     <style name="ListItemLinearLayoutsection2">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="ActivityViewButtonStyle">
+    <style name="activity_info_button_style">
         <item name="android:background">@color/colorAccent</item>
         <item name="android:focusable">false</item>
         <item name="android:layout_width">wrap_content</item>
@@ -77,4 +66,28 @@
         <item name="android:textColor">#fff</item>
     </style>
 
+    <!-- used on activity info-->
+    <style name="Image_details_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="game_details__text_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    </style>
+
+    <style name="game_title_text_view">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+    </style>
 </resources>

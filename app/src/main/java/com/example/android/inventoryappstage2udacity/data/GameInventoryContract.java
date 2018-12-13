@@ -63,12 +63,5 @@ public class GameInventoryContract {
         public final static int SUPPLIER_GAMERS = 2;
         public final static int SUPPLIER_PLAYERS = 3;
 
-        public static boolean isValidSupplierName(int suppliername) {
-            if (suppliername == SUPPLIER_UNKNOWN || suppliername == SUPPLIER_SONY || suppliername == SUPPLIER_GAMERS || suppliername == SUPPLIER_PLAYERS) {
-                return true;
-            }
-            return false;
-
-        }
     }
 }
