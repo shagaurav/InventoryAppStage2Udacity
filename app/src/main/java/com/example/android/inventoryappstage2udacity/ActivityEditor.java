@@ -17,11 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 import android.support.v4.content.CursorLoader;
 
@@ -62,7 +59,7 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
     private EditText gameQuantityEditText;
 
     // EditText field to enter the game's supplier name
-    private Spinner supplierNameSpinner;
+    private EditText supplierNameEditText;
 
     // EditText field to enter the game's supplier contact
     private EditText supplierContactEditText;
@@ -74,7 +71,6 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
     private Button addQuantityButton;
 
     // Supplier of the game
-    private int supplierName = GameInventoryEntry.SUPPLIER_UNKNOWN;
     // OnTouchListener that listens for any user touches on a View, implying that they are modifying
     // the view, and we change the gameHasChanged boolean to true.
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
@@ -114,7 +110,7 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
         gameNameEditText = findViewById( R.id.product_name );
         gamePriceEditText = findViewById( R.id.poduct_price );
         gameQuantityEditText = findViewById( R.id.product_quantity );
-        supplierNameSpinner = findViewById( R.id.product_supplier_name_spinner );
+        supplierNameEditText = findViewById( R.id.product_supplier_name_spinner );
         supplierContactEditText = findViewById( R.id.supplier_contact );
         subtractQuantityButton = findViewById( R.id.decrease_button );
         addQuantityButton = findViewById( R.id.increase_button );
@@ -161,47 +157,11 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
         gameNameEditText.setOnTouchListener( mTouchListener );
         gamePriceEditText.setOnTouchListener( mTouchListener );
         gameQuantityEditText.setOnTouchListener( mTouchListener );
-        supplierNameSpinner.setOnTouchListener( mTouchListener );
+        supplierNameEditText.setOnTouchListener( mTouchListener );
         subtractQuantityButton.setOnTouchListener( mTouchListener );
         addQuantityButton.setOnTouchListener( mTouchListener );
         supplierContactEditText.setOnTouchListener( mTouchListener );
 
-        // Spinner for supplier name
-        setupSpinner();
-    }
-
-    // Spinner for Supplier's name
-    private void setupSpinner() {
-
-        ArrayAdapter productSupplieNameSpinnerAdapter = ArrayAdapter.createFromResource( this,
-                R.array.array_supplier_options, android.R.layout.simple_spinner_item );
-
-        productSupplieNameSpinnerAdapter.setDropDownViewResource( android.R.layout.simple_dropdown_item_1line );
-
-        supplierNameSpinner.setAdapter( productSupplieNameSpinnerAdapter );
-
-        supplierNameSpinner.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selection = (String) parent.getItemAtPosition( position );
-                if (!TextUtils.isEmpty( selection )) {
-                    if (selection.equals( getString( R.string.supplier_sony ) )) {
-                        supplierName = GameInventoryEntry.SUPPLIER_SONY;
-                    } else if (selection.equals( getString( R.string.supplier_gamers ) )) {
-                        supplierName = GameInventoryEntry.SUPPLIER_GAMERS;
-                    } else if (selection.equals( getString( R.string.supplier_players ) )) {
-                        supplierName = GameInventoryEntry.SUPPLIER_PLAYERS;
-                    } else {
-                        supplierName = GameInventoryEntry.SUPPLIER_UNKNOWN;
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                supplierName = GameInventoryEntry.SUPPLIER_UNKNOWN;
-            }
-        } );
     }
 
     @Override
@@ -233,6 +193,7 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
         String gameNameString = gameNameEditText.getText().toString().trim();
         String gamePriceString = gamePriceEditText.getText().toString().trim();
         String gameQuantityString = gameQuantityEditText.getText().toString().trim();
+        String supplierNameString = supplierNameEditText.getText().toString().trim();
         String supplierContactString = supplierContactEditText.getText().toString().trim();
 
         if (TextUtils.isEmpty( gameNameString )) {
@@ -246,6 +207,11 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
         }
         if (TextUtils.isEmpty( gameQuantityString )) {
             gameQuantityEditText.setError( getString( R.string.required ) );
+            return;
+        }
+
+        if (TextUtils.isEmpty( supplierNameString )) {
+            supplierNameEditText.setError( getString( R.string.required ) );
             return;
         }
 
@@ -272,8 +238,8 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
         values.put( GameInventoryEntry.COLUMN_GAME_NAME, gameNameString );
         values.put( GameInventoryEntry.COLUMN_GAME_PRICE, gamePriceInt );
         values.put( GameInventoryEntry.COLUMN_GAME_QUANTITY, gameQuantityInt );
-        values.put( GameInventoryEntry.COLUMN_GAME_SUPPLIER_NAME, supplierName );
-        values.put( GameInventoryEntry.COLUMN_GAME_SUPPLIER_PHONE_NUMBER, supplierContact );
+        values.put( GameInventoryEntry.COLUMN_GAME_SUPPLIER_NAME, supplierNameString );
+        values.put( GameInventoryEntry.COLUMN_GAME_SUPPLIER_PHONE_NUMBER, supplierContactString );
 
         // Determine if this is a new or existing game by checking if currentGameUri is null or not
         if (currentGameUri == null) {
@@ -499,31 +465,17 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
             String gameName = cursor.getString( gameNameColumnIndex );
             final int gamePrice = cursor.getInt( gamePriceColumnIndex );
             final int gameQuantity = cursor.getInt( gameQuantityColumnIndex );
-            final int supplierName = cursor.getInt( supplierNameColumnIndex );
+            String supplierName = cursor.getString( supplierNameColumnIndex );
             final String supplierContact = cursor.getString( supplierContactColumnIndex );
 
             // Update the views on the screen with the values from the database
             gameNameEditText.setText( gameName );
             gamePriceEditText.setText( String.valueOf( gamePrice ) );
             gameQuantityEditText.setText( String.valueOf( gameQuantity ) );
+            supplierNameEditText.setText( String.valueOf( supplierName ) );
             supplierContactEditText.setText( String.valueOf( supplierContact ) );
 
-            switch (supplierName) {
-                case GameInventoryEntry.SUPPLIER_SONY:
-                    supplierNameSpinner.setSelection( 1 );
-                    break;
-                case GameInventoryEntry.SUPPLIER_GAMERS:
-                    supplierNameSpinner.setSelection( 2 );
-                    break;
-                case GameInventoryEntry.SUPPLIER_PLAYERS:
-                    supplierNameSpinner.setSelection( 3 );
-                    break;
-                default:
-                    supplierNameSpinner.setSelection( 0 );
-                    break;
-            }
         }
-
     }
 
     @Override
@@ -532,6 +484,7 @@ public class ActivityEditor extends AppCompatActivity implements LoaderManager.L
         gameNameEditText.setText( "" );
         gamePriceEditText.setText( "" );
         gameQuantityEditText.setText( "" );
+        supplierNameEditText.setText( " " );
         supplierContactEditText.setText( "" );
     }
 }

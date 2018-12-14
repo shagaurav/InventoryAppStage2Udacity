@@ -125,18 +125,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <!--Supplier Field-->
-            <TextView
-                style="@style/ProductAddTextStyle"
-                android:text="@string/product_supplier_name" />
-
-            <!--Spinner Field-->
-            <Spinner
+            <!--Quantity Field-->
+            <EditText
                 android:id="@+id/product_supplier_name_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/spinner_height"
-                android:paddingRight="@dimen/spinner_padding_right"
-                android:spinnerMode="dropdown" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_supplier_name"
+                android:textAppearance="?android:textAppearanceMedium"/>
+
         </LinearLayout>
 
         <!--Supplier Overview-->

@@ -34,4 +34,5 @@
     <dimen name="call_button_margin_left">20dp</dimen>
     <dimen name="android_button_list_margin">130dp</dimen>
     <dimen name="android_view">2dp</dimen>
+    <dimen name="edit_margin">270dp</dimen>
 </resources>

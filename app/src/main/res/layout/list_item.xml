@@ -19,7 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/display_name"
-        android:layout_marginTop="@dimen/layout_margins"
         android:text="@string/label_price"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/red_background" />
@@ -44,6 +43,16 @@
         android:text="@string/price_for_single_item"
         android:textAppearance="?android:textAppearanceSmall"
         android:textColor="@color/red_background" />
+
+    <TextView
+        android:id="@+id/display_supplier_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/for_single_item"
+        android:text="@string/supplier_sony"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/white_background" />
+
 
     <TextView
         android:id="@+id/display_quantity"
@@ -80,5 +89,16 @@
         android:text="@string/button_sale"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/black_background" />
+
+    <Button
+        android:id="@+id/edit_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sale_button"
+        android:layout_marginLeft="@dimen/edit_margin"
+        android:layout_marginTop="@dimen/sale_button_margin_top"
+        android:text="@string/edit" />
+
 
 </RelativeLayout>

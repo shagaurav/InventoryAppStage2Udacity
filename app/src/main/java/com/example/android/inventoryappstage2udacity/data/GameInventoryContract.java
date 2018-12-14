@@ -4,7 +4,7 @@ import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public class GameInventoryContract {
+public final class GameInventoryContract {
 
     public static final String CONTENT_AUTHORITY = "com.example.android.inventoryappstage2udacity";
     public static final Uri BASE_CONTENT_URI = Uri.parse( "content://" + CONTENT_AUTHORITY );

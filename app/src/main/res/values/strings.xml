@@ -94,7 +94,12 @@
     <string name="game_supplier_contact_icon">Game supplier contact icon</string>
 
     <string name="no_contact_to_show">No contact to show</string>
-    <string name="tell">tell:</string>
+    <string name="tel">tel:</string>
+    <string name="call">Call</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
+    <string name="edit">Edit</string>
+    <string name="game_quantity_increment_successful">Game quantity increment successful</string>
+    <string name="game_quantity_decrement_successful">Game quantity decrement successful</string>
+    <string name="out_of_stock">This Game is out of stock</string>
 </resources>

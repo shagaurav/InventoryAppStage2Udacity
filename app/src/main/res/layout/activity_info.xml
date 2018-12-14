@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/game_details_name_text_view"
             style="@style/game_title_text_view"
             android:layout_marginLeft="@dimen/android_layout_margin"
@@ -35,7 +35,7 @@
             android:contentDescription="@string/game_price_icon"
             app:srcCompat="@drawable/price" />
 
-        <TextView
+        <EditText
             android:id="@+id/game_details_price_text_view"
             style="@style/game_details__text_view_style"
             tools:text="@string/price_cannot_be_negative" />
@@ -46,10 +46,42 @@
             android:contentDescription="@string/game_quantity_icon"
             app:srcCompat="@drawable/game_icon" />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <EditText
             android:id="@+id/game_details_quantity_textView"
             style="@style/game_details__text_view_style"
             tools:text="@string/edit_games" />
+
+            <LinearLayout style="@style/ListItemLinearLayoutsection2">
+
+                <Button
+                    android:id="@+id/gameDetailsIncrementQuantityButtonImageView"
+                    android:layout_width="@dimen/layout_margins"
+                    android:layout_height="@dimen/layout_margins"
+                    android:layout_marginLeft="@dimen/layout_margins"
+                    android:background="@color/colorAccent"
+                    android:text="@string/plus"
+                    android:textColor="@color/plus_minus" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ListItemLinearLayoutsection2">
+
+                <Button
+                    android:id="@+id/gameDetailsDecrementQuantityButtonImageView"
+                    android:layout_width="@dimen/layout_margins"
+                    android:layout_height="@dimen/layout_margins"
+                    android:background="@color/colorAccent"
+                    android:text="@string/minus"
+                    android:textColor="@color/plus_minus" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/game_details_supplier_icon_image_view"
@@ -57,7 +89,7 @@
             android:contentDescription="@string/game_supplier_icon"
             app:srcCompat="@drawable/user" />
 
-        <TextView
+        <EditText
             android:id="@+id/game_details_supplier_name_textView"
             style="@style/game_details__text_view_style"
             tools:text="@string/edit_supplier_name" />
@@ -72,10 +104,17 @@
             app:srcCompat="@drawable/black_call"
             tools:ignore="MissingConstraints" />
 
-        <TextView
+        <EditText
             android:id="@+id/game_details_supplier_contact_text_view"
             style="@style/game_details__text_view_style"
             tools:text="@string/no_contact_to_show" />
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/call_supplier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/list_item_padding"
+            android:text="@string/call"/>
 
         <Button
             android:id="@+id/delete_game_button"

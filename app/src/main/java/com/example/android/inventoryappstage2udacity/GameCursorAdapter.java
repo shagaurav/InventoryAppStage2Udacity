@@ -3,6 +3,7 @@ package com.example.android.inventoryappstage2udacity;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -56,22 +57,29 @@ public class GameCursorAdapter extends CursorAdapter {
         // Find individual views that we want to modify in the list item layout
         TextView gameNameTextView = view.findViewById( R.id.display_name );
         TextView gamePriceTextView = view.findViewById( R.id.display_price );
+        TextView gameSupplierTextView = view.findViewById( R.id.display_supplier_name );
         TextView gameQuantityTextView = view.findViewById( R.id.display_quantity );
+        Button editButton = view.findViewById(R.id.edit_button);
 
         // Find the columns of game attributes that we're interested in
+        final int gameIdColumnIndex= cursor.getColumnIndex( GameInventoryEntry._ID );
         int gameNameColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_NAME );
         int gamePriceColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_PRICE );
         int gameQuantityColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_QUANTITY );
+        int gameSupplierNameColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_SUPPLIER_NAME );
 
         // Read the game attributes from the Cursor for the current game
+        final int gameId = cursor.getInt(gameIdColumnIndex);
         String gameName = cursor.getString( gameNameColumnIndex );
         int gamePrice = cursor.getInt( gamePriceColumnIndex );
         int gameQuantity = cursor.getInt( gameQuantityColumnIndex );
+        String supplierName = cursor.getString( gameSupplierNameColumnIndex );
 
         // Update the TextViews with the attributes for the current game
         gameNameTextView.setText( gameName );
         gamePriceTextView.setText( String.valueOf( gamePrice ) );
         gameQuantityTextView.setText( String.valueOf( gameQuantity ) );
+        gameSupplierTextView.setText( String.valueOf( supplierName ) );
 
         // column number of "_ID"
         int gameIdColumIndex = cursor.getColumnIndex( GameInventoryEntry._ID );
@@ -100,5 +108,15 @@ public class GameCursorAdapter extends CursorAdapter {
                 }
             }
         } );
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ActivityEditor.class);
+                Uri currentBookUri = ContentUris.withAppendedId(GameInventoryEntry.CONTENT_URI, gameId);
+                intent.setData(currentBookUri);
+                context.startActivity(intent);
+            }
+        });
     }
 }
