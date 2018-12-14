@@ -59,17 +59,14 @@ public class GameCursorAdapter extends CursorAdapter {
         TextView gamePriceTextView = view.findViewById( R.id.display_price );
         TextView gameSupplierTextView = view.findViewById( R.id.display_supplier_name );
         TextView gameQuantityTextView = view.findViewById( R.id.display_quantity );
-        Button editButton = view.findViewById(R.id.edit_button);
 
         // Find the columns of game attributes that we're interested in
-        final int gameIdColumnIndex= cursor.getColumnIndex( GameInventoryEntry._ID );
         int gameNameColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_NAME );
         int gamePriceColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_PRICE );
         int gameQuantityColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_QUANTITY );
         int gameSupplierNameColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_SUPPLIER_NAME );
 
         // Read the game attributes from the Cursor for the current game
-        final int gameId = cursor.getInt(gameIdColumnIndex);
         String gameName = cursor.getString( gameNameColumnIndex );
         int gamePrice = cursor.getInt( gamePriceColumnIndex );
         int gameQuantity = cursor.getInt( gameQuantityColumnIndex );
@@ -109,14 +106,5 @@ public class GameCursorAdapter extends CursorAdapter {
             }
         } );
 
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ActivityEditor.class);
-                Uri currentBookUri = ContentUris.withAppendedId(GameInventoryEntry.CONTENT_URI, gameId);
-                intent.setData(currentBookUri);
-                context.startActivity(intent);
-            }
-        });
     }
 }

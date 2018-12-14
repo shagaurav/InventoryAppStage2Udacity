@@ -16,13 +16,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.text.MessageFormat;
+
 import com.example.android.inventoryappstage2udacity.data.GameInventoryContract.GameInventoryEntry;
 
-public class ActivityInfo extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor>{
+public class ActivityInfo extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<Cursor> {
 
     // Identifier for the game data loader
     public static final int EXISTING_GAME_LOADER = 0;
@@ -37,7 +40,7 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
     // Content URI for existing game
     private Uri currentGameUri;
 
-    private TextView gameInfoNameTextView;
+    private EditText gameInfoNameTextView;
     private TextView gameInfoPriceTextView;
     private TextView gameInfoQuantityTextView;
     private TextView gameInfoSupplierNameTextView;
@@ -47,13 +50,13 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_info );
-        gameInfoNameTextView = findViewById(R.id.game_details_name_text_view );
-        gameInfoPriceTextView = findViewById(R.id.game_details_price_text_view );
-        gameInfoQuantityTextView = findViewById(R.id.game_details_quantity_textView );
-        gameInfoSupplierNameTextView = findViewById(R.id.game_details_supplier_name_textView );
-        gameInfoSupplierContactTextView = findViewById(R.id.game_details_supplier_contact_text_view );
+        gameInfoNameTextView = findViewById( R.id.game_details_name_text_view );
+        gameInfoPriceTextView = findViewById( R.id.game_details_price_text_view );
+        gameInfoQuantityTextView = findViewById( R.id.game_details_quantity_textView );
+        gameInfoSupplierNameTextView = findViewById( R.id.game_details_supplier_name_textView );
+        gameInfoSupplierContactTextView = findViewById( R.id.game_details_supplier_contact_text_view );
 
-        Button deleteBookButton = findViewById(R.id.delete_game_button );
+        Button deleteGameButton = findViewById( R.id.delete_game_button );
 
         Intent intent = getIntent();
         currentGameUri = intent.getData();
@@ -63,15 +66,15 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
             invalidateOptionsMenu();
         } else {
             // Initialize a loader to read the games data from the database and display current values in editor
-            getLoaderManager().initLoader( EXISTING_GAME_LOADER, null, this);
+            getLoaderManager().initLoader( EXISTING_GAME_LOADER, null, this );
         }
 
-        deleteBookButton.setOnClickListener(new View.OnClickListener() {
+        deleteGameButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDeleteConfirmationDialog();
             }
-        });
+        } );
     }
 
     @Override
@@ -87,7 +90,7 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
         };
 
         // This loader will execute the ContentProvider's query method on a background thread
-        return new CursorLoader(this, currentGameUri, projection, null, null, null);
+        return new CursorLoader( this, currentGameUri, projection, null, null, null );
     }
 
     @Override
@@ -100,11 +103,11 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
         // Proceed with moving to the first row of cursor and reading cursor from it
         if (cursor.moveToFirst()) {
             // figure out the index of each column
-            int gameNameColumnIndex = cursor.getColumnIndex(GameInventoryEntry.COLUMN_GAME_NAME);
-            int gamePriceColumnIndex = cursor.getColumnIndex(GameInventoryEntry.COLUMN_GAME_PRICE);
-            int gameQuantityColumnIndex = cursor.getColumnIndex(GameInventoryEntry.COLUMN_GAME_QUANTITY);
-            int supplierNameColumnIndex = cursor.getColumnIndex(GameInventoryEntry.COLUMN_GAME_SUPPLIER_NAME);
-            int supplierContactColumnIndex = cursor.getColumnIndex(GameInventoryEntry.COLUMN_GAME_SUPPLIER_PHONE_NUMBER);
+            int gameNameColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_NAME );
+            int gamePriceColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_PRICE );
+            int gameQuantityColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_QUANTITY );
+            int supplierNameColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_SUPPLIER_NAME );
+            int supplierContactColumnIndex = cursor.getColumnIndex( GameInventoryEntry.COLUMN_GAME_SUPPLIER_PHONE_NUMBER );
 
             // Extract out the value from the Cursor for the given column index
             String gameName = cursor.getString( gameNameColumnIndex );
@@ -114,60 +117,46 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
             final Integer supplierContact = cursor.getInt( supplierContactColumnIndex );
 
             // Update the views on the screen with values from database
-            gameInfoNameTextView.setText(gameName);
-            gameInfoPriceTextView.setText(MessageFormat.format("${0}", gamePrice));
-            gameInfoQuantityTextView.setText(MessageFormat.format("{0}", gameQuantity));
-            gameInfoSupplierNameTextView.setText(supplierName);
-            gameInfoSupplierContactTextView.setText(Integer.toString( supplierContact ));
+            gameInfoNameTextView.setText( gameName );
+            gameInfoPriceTextView.setText( MessageFormat.format( "${0}", gamePrice ) );
+            gameInfoQuantityTextView.setText( MessageFormat.format( "{0}", gameQuantity ) );
+            gameInfoSupplierNameTextView.setText( supplierName );
+            gameInfoSupplierContactTextView.setText( Integer.toString( supplierContact ) );
 
-            Button gameDetailsIncrementQuantityButtonImageView = findViewById(R.id.gameDetailsIncrementQuantityButtonImageView);
-            gameDetailsIncrementQuantityButtonImageView.setOnClickListener(new View.OnClickListener() {
+            Button gameDetailsIncrementQuantityButtonImageView = findViewById( R.id.gameDetailsIncrementQuantityButtonImageView );
+            gameDetailsIncrementQuantityButtonImageView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    incrementGameQuantity(gameQuantity);
+                    incrementGameQuantity( gameQuantity );
                 }
-            });
+            } );
 
-            Button gameDetailsDecrementQuantityButtonImageView = findViewById(R.id.gameDetailsDecrementQuantityButtonImageView);
-            gameDetailsDecrementQuantityButtonImageView.setOnClickListener(new View.OnClickListener() {
+            Button gameDetailsDecrementQuantityButtonImageView = findViewById( R.id.gameDetailsDecrementQuantityButtonImageView );
+            gameDetailsDecrementQuantityButtonImageView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    decrementGameQuantity(gameQuantity);
+                    decrementGameQuantity( gameQuantity );
                 }
-            });
+            } );
 
-            gameInfoSupplierContactTextView.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Button phoneButton = findViewById(R.id.call_supplier);
-                    phoneButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String phone = String.valueOf(supplierContact);
-                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                            startActivity(intent);
-                        }
-                    });
-                }
-            });
         }
     }
 
     private void incrementGameQuantity(int gameCalculateQuantity) {
         gameCalculateQuantity = gameCalculateQuantity + 1;
         if (gameCalculateQuantity >= 0) {
-            updateBook(gameCalculateQuantity);
-            Toast.makeText(this, getString(R.string.game_quantity_increment_successful), Toast.LENGTH_SHORT).show();
+            updateBook( gameCalculateQuantity );
+            Toast.makeText( this, getString( R.string.game_quantity_increment_successful ), Toast.LENGTH_SHORT ).show();
         }
     }
 
     private void decrementGameQuantity(int gameCalculateQuantity) {
         gameCalculateQuantity = gameCalculateQuantity - 1;
         if (gameCalculateQuantity >= 0) {
-            updateBook(gameCalculateQuantity);
-            Toast.makeText(this, getString(R.string.game_quantity_decrement_successful), Toast.LENGTH_SHORT).show();
+            updateBook( gameCalculateQuantity );
+            Toast.makeText( this, getString( R.string.game_quantity_decrement_successful ), Toast.LENGTH_SHORT ).show();
         } else {
-            Toast.makeText(this, getString(R.string.out_of_stock), Toast.LENGTH_SHORT).show();
+            Toast.makeText( this, getString( R.string.out_of_stock ), Toast.LENGTH_SHORT ).show();
         }
     }
 
@@ -177,46 +166,46 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
         }
 
         ContentValues values = new ContentValues();
-        values.put(GameInventoryEntry.COLUMN_GAME_QUANTITY, gameCalculateQuantity);
+        values.put( GameInventoryEntry.COLUMN_GAME_QUANTITY, gameCalculateQuantity );
 
         if (currentGameUri == null) {
             // This is a new book
-            Uri newUri = getContentResolver().insert(GameInventoryEntry.CONTENT_URI, values);
+            Uri newUri = getContentResolver().insert( GameInventoryEntry.CONTENT_URI, values );
 
             // Show a Toast depending on whether or not the insertion was successful
             if (newUri == null) {
                 // If the new content URI is null, there was an error with insertion
-                Toast.makeText(this, getString(R.string.error_saving_games), Toast.LENGTH_SHORT).show();
+                Toast.makeText( this, getString( R.string.error_saving_games ), Toast.LENGTH_SHORT ).show();
             } else {
                 // Otherwise insertion was successful
-                Toast.makeText(this, getString(R.string.game_saved), Toast.LENGTH_SHORT).show();
+                Toast.makeText( this, getString( R.string.game_saved ), Toast.LENGTH_SHORT ).show();
             }
         } else {
             // Otherwise this is an existing book, so update the book with content URI
-            int rowsAffected = getContentResolver().update(currentGameUri, values, null, null);
+            int rowsAffected = getContentResolver().update( currentGameUri, values, null, null );
 
             // Show a Toast depending on whether or not the update was successful
             if (rowsAffected == 0) {
                 // If no rows were affected, there was an error with update
-                Toast.makeText(this, getString(R.string.error_saving_games), Toast.LENGTH_SHORT).show();
+                Toast.makeText( this, getString( R.string.error_saving_games ), Toast.LENGTH_SHORT ).show();
             } else {
                 // Otherwise update was successful
-                Toast.makeText(this, getString(R.string.game_saved), Toast.LENGTH_SHORT).show();
+                Toast.makeText( this, getString( R.string.game_saved ), Toast.LENGTH_SHORT ).show();
             }
         }
     }
 
     private void showDeleteConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.delete_game));
-        builder.setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setMessage( getString( R.string.delete_game ) );
+        builder.setPositiveButton( getString( R.string.delete ), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // User clicked Delete deleteGameButton, so delete the game
                 deleteBook();
             }
-        });
-        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        } );
+        builder.setNegativeButton( getString( R.string.cancel ), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // User clicked Keep Editing deleteGameButton, dismiss the dialog and continue editing the game
@@ -224,7 +213,7 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
                     dialog.dismiss();
                 }
             }
-        });
+        } );
 
         // Create and show the AlertDialog
         AlertDialog alertDialog = builder.create();
@@ -235,17 +224,16 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
     private void deleteBook() {
         // Only perform the delete if this is an existing game
         if (currentGameUri != null) {
-            int rowsDeleted = getContentResolver().delete( currentGameUri, null, null);
+            int rowsDeleted = getContentResolver().delete( currentGameUri, null, null );
 
             // Show a Toast depending on whether or not the delete operation was successful
             if (rowsDeleted == 0) {
                 // If no rows were deleted, there was an error with delete operation
-                Toast.makeText(this, getString(R.string.error_deleting_game), Toast.LENGTH_SHORT).show();
+                Toast.makeText( this, getString( R.string.error_deleting_game ), Toast.LENGTH_SHORT ).show();
             } else {
-                Toast.makeText(this, getString(R.string.game_deleted), Toast.LENGTH_SHORT).show();
+                Toast.makeText( this, getString( R.string.game_deleted ), Toast.LENGTH_SHORT ).show();
             }
         }
-
         // Close the activity
         finish();
     }
@@ -424,10 +412,10 @@ public class ActivityInfo extends AppCompatActivity implements android.app.Loade
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         // If the loader is invalidated, clear out all the data from TextView
-        gameInfoNameTextView.setText("");
-        gameInfoPriceTextView.setText("");
-        gameInfoQuantityTextView.setText("");
-        gameInfoSupplierNameTextView.setText("");
-        gameInfoSupplierContactTextView.setText("");
+        gameInfoNameTextView.setText( "" );
+        gameInfoPriceTextView.setText( "" );
+        gameInfoQuantityTextView.setText( "" );
+        gameInfoSupplierNameTextView.setText( "" );
+        gameInfoSupplierContactTextView.setText( "" );
     }
 }

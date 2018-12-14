@@ -13,6 +13,8 @@
     <!-- Title for the EditorActivity [CHAR LIMIT=20] -->
     <string name="edit_games">Edit Games</string>
 
+    <string name="game_detail_activity_label">Game Details</string>
+
     <!--Strings for the activity_editor.xml -->
     <string name="label_product_overview"> Video Game Overview</string>
     <string name="edit_product_name">Game Name</string>
@@ -98,6 +100,7 @@
     <string name="call">Call</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
+    <string name="number_edit">10</string>
     <string name="edit">Edit</string>
     <string name="game_quantity_increment_successful">Game quantity increment successful</string>
     <string name="game_quantity_decrement_successful">Game quantity decrement successful</string>

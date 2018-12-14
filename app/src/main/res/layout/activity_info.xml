@@ -17,7 +17,8 @@
             style="@style/game_title_text_view"
             android:layout_marginLeft="@dimen/android_layout_margin"
             android:layout_marginRight="@dimen/list_item_padding"
-            tools:text="@string/supplier_sony" />
+            tools:text="@string/supplier_sony"
+            android:textAppearance="?android:textAppearanceMedium"/>
 
         <View
             android:id="@+id/divider"
@@ -38,7 +39,8 @@
         <EditText
             android:id="@+id/game_details_price_text_view"
             style="@style/game_details__text_view_style"
-            tools:text="@string/price_cannot_be_negative" />
+            android:inputType="number"
+            tools:text="@string/number_edit" />
 
         <ImageView
             android:id="@+id/game_details_quantity_icon_image_view"
@@ -54,6 +56,7 @@
         <EditText
             android:id="@+id/game_details_quantity_textView"
             style="@style/game_details__text_view_style"
+            android:inputType="number"
             tools:text="@string/edit_games" />
 
             <LinearLayout style="@style/ListItemLinearLayoutsection2">
@@ -106,15 +109,9 @@
 
         <EditText
             android:id="@+id/game_details_supplier_contact_text_view"
+            android:inputType="number"
             style="@style/game_details__text_view_style"
             tools:text="@string/no_contact_to_show" />
-        <Button
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:id="@+id/call_supplier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/list_item_padding"
-            android:text="@string/call"/>
 
         <Button
             android:id="@+id/delete_game_button"

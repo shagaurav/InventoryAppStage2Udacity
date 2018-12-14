@@ -90,15 +90,5 @@
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/black_background" />
 
-    <Button
-        android:id="@+id/edit_button"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sale_button"
-        android:layout_marginLeft="@dimen/edit_margin"
-        android:layout_marginTop="@dimen/sale_button_margin_top"
-        android:text="@string/edit" />
-
 
 </RelativeLayout>
